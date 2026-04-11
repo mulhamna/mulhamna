@@ -1,6 +1,21 @@
-- 👋 Hi, I’m @mulhamna
-- 👀 I’m interested in Product Management
-- 📫 How to reach me linktr.ee/mulhamna
+# 👋 Hi, I'm Mulham
+
+I'm interested in product management and building practical internal tools.
+
+## Projects
+
+### [vod](https://github.com/keton-id/vod)
+Virtual Office Dashboard for internal operational visibility and team workflow support.
+
+### [pkgmap](https://github.com/mulhamna/pkgmap)
+Monitoring Package Manager to help track package states and dependencies more clearly.
+
+### [portbar](https://github.com/mulhamna/portbar)
+Active Port Monitoring tool for checking port availability and service exposure.
+
+## Reach Me
+
+- [linktr.ee/mulhamna](https://linktr.ee/mulhamna)
 
 <!---
 mulhamna/mulhamna is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
