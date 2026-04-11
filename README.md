@@ -4,14 +4,9 @@ I'm interested in product management and building practical internal tools.
 
 ## Projects
 
-### [vod](https://github.com/keton-id/vod)
-Virtual Office Dashboard for internal operational visibility and team workflow support.
-
-### [pkgmap](https://github.com/mulhamna/pkgmap)
-Monitoring Package Manager to help track package states and dependencies more clearly.
-
-### [portbar](https://github.com/mulhamna/portbar)
-Active Port Monitoring tool for checking port availability and service exposure.
+- 📊 [vod](https://github.com/keton-id/vod)
+- 📦 [pkgmap](https://github.com/mulhamna/pkgmap)
+- 🚦 [portbar](https://github.com/mulhamna/portbar)
 
 ## Reach Me
 
