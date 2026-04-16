@@ -12,7 +12,18 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 ## Activity
 
-![mulhamna's Github chart](https://ghchart.rshah.org/40c463/mulhamna)
+![mulhamna's GitHub contribution chart](https://ghchart.rshah.org/40c463/mulhamna)
+
+## GitHub Stats
+
+> These cards are dynamic and auto-update, so they do not need manual image refreshes.
+
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api?username=mulhamna&show_icons=true&count_private=true&hide_border=true&title_color=40c463&icon_color=40c463&text_color=c9d1d9&bg_color=0d1117" alt="mulhamna's GitHub stats" height="170" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mulhamna&layout=compact&langs_count=8&hide_border=true&title_color=40c463&text_color=c9d1d9&bg_color=0d1117" alt="Top languages" height="170" />
+</p>
+
+![mulhamna's GitHub streak](https://streak-stats.demolab.com?user=mulhamna&theme=github-dark-blue&hide_border=true&ring=40c463&fire=40c463&currStreakLabel=40c463)
 
 ## Reach Me
 
