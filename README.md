@@ -12,7 +12,7 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 ## Activity
 
-![GitHub contribution chart](https://ghchart.rshah.org/black/mulhamna)
+![mulhamna's Github chart](https://ghchart.rshah.org/40c463/mulhamna)
 
 ## Reach Me
 
