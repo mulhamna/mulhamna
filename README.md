@@ -6,9 +6,10 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 ## Projects
 
 - <img src="./assets/jira-commands-icon.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit built for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
-- 📊 [vod](https://github.com/keton-id/vod) — A dashboard for keeping an eye on multiple Google Meet rooms from a single view.
 - 📦 [pkgmap](https://github.com/mulhamna/pkgmap) — A monitoring tool for understanding package states and dependency relationships.
 - ⚡️ [portbar](https://github.com/mulhamna/portbar) — A lightweight Mac utility for monitoring ports and local service exposure.
+- 🔔🤖 [broask](https://github.com/mulhamna/broask) - Never miss a CLI prompt again. Plays a sound whenever your AI coding tool asks for confirmation. 
+- 📊 [vod](https://github.com/keton-id/vod) — A dashboard for keeping an eye on multiple Google Meet rooms from a single view.
 
 ## Activity
 
