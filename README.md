@@ -23,7 +23,7 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 <p align="left">
   <img src="https://github-readme-stats.vercel.app/api?username=mulhamna&show_icons=true&count_private=true&hide_border=true&title_color=40c463&icon_color=40c463&text_color=c9d1d9&bg_color=0d1117" alt="mulhamna's GitHub stats" height="170" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mulhamna&layout=compact&langs_count=10&hide_border=true&title_color=40c463&text_color=c9d1d9&bg_color=0d1117&hide=html,css" alt="Top languages" height="170" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mulhamna&layout=compact&langs_count=10&hide_border=true&title_color=40c463&text_color=c9d1d9&bg_color=0d1117&hide=html,css&cache_seconds=1800" alt="Top languages" height="170" />
 </p>
 
 ![mulhamna's GitHub streak](https://streak-stats.demolab.com?user=mulhamna&theme=github-dark-blue&hide_border=true&ring=40c463&fire=40c463&currStreakLabel=40c463)
