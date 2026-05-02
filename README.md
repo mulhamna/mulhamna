@@ -1,16 +1,24 @@
 # 👋 Hi, I'm Mulham
 
-I'm interested in product management and building practical internal tools.  
+I'm a Technical Product Manager who builds practical tools for terminals, bots, and AI-assisted workflows.  
+I enjoy turning operational pain points into usable internal products.  
 I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
-## Projects
+## Selected Projects
 
-- <img src="./assets/jira-commands-icon.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit built for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
+- <img src="./assets/jira-commands-icon.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
 - 📦 [pkgmap](https://github.com/mulhamna/pkgmap) — A monitoring tool for understanding package states and dependency relationships.
-- 🧪 [suitest](https://github.com/mulhamna/suitest) - Bring-your-own-AI testing agent. Generate, run, and fix tests from the CLI.
+- 🧪 [suitest](https://github.com/mulhamna/suitest) — An AI-powered CLI testing agent that generates, runs, and fixes tests in real codebases.
 - ⚡️ [portbar](https://github.com/mulhamna/portbar) — A lightweight Mac utility for monitoring ports and local service exposure.
-- 🔔🤖 [broask](https://github.com/mulhamna/broask) - Never miss a CLI prompt again. Plays a sound whenever your AI coding tool asks for confirmation. 
-- 📊 [vod](https://github.com/keton-id/vod) — A dashboard for keeping an eye on multiple Google Meet rooms from a single view.
+- 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
+- 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
+
+## Focus
+
+- Technical product management
+- Internal tools
+- CLI products
+- AI-assisted workflows
 
 ## Activity
 
@@ -18,14 +26,12 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 ## GitHub Stats
 
-> These cards are dynamic and auto-update, so they do not need manual image refreshes.
+> These cards are dynamic and auto-update.
 
 <p align="left">
   <img src="https://github-readme-stats.vercel.app/api?username=mulhamna&show_icons=true&count_private=true&hide_border=true&title_color=40c463&icon_color=40c463&text_color=c9d1d9&bg_color=0d1117" alt="mulhamna's GitHub stats" height="170" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mulhamna&layout=compact&langs_count=8&hide_border=true&title_color=40c463&text_color=c9d1d9&bg_color=0d1117" alt="Top languages" height="170" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mulhamna&layout=compact&langs_count=10&hide_border=true&title_color=40c463&text_color=c9d1d9&bg_color=0d1117&hide=html,css" alt="Top languages" height="170" />
 </p>
-
-![mulhamna's GitHub streak](https://streak-stats.demolab.com?user=mulhamna&theme=github-dark-blue&hide_border=true&ring=40c463&fire=40c463&currStreakLabel=40c463)
 
 ## Reach Me
 
