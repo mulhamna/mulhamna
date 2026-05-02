@@ -13,13 +13,6 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 - 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
 - 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
 
-## Focus
-
-- Technical product management
-- Internal tools
-- CLI products
-- AI-assisted workflows
-
 ## Activity
 
 ![mulhamna's GitHub contribution chart](https://ghchart.rshah.org/40c463/mulhamna)
@@ -32,6 +25,8 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
   <img src="https://github-readme-stats.vercel.app/api?username=mulhamna&show_icons=true&count_private=true&hide_border=true&title_color=40c463&icon_color=40c463&text_color=c9d1d9&bg_color=0d1117" alt="mulhamna's GitHub stats" height="170" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mulhamna&layout=compact&langs_count=10&hide_border=true&title_color=40c463&text_color=c9d1d9&bg_color=0d1117&hide=html,css" alt="Top languages" height="170" />
 </p>
+
+![mulhamna's GitHub streak](https://streak-stats.demolab.com?user=mulhamna&theme=github-dark-blue&hide_border=true&ring=40c463&fire=40c463&currStreakLabel=40c463)
 
 ## Reach Me
 
