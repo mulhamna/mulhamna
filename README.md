@@ -19,8 +19,6 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 ## GitHub Stats
 
-> These cards are dynamic and auto-update.
-
 <p align="left">
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=mulhamna&theme=github_dark" alt="mulhamna's GitHub stats" height="170" />
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=mulhamna&theme=github_dark" alt="Top languages by contribution" height="170" />
