@@ -7,6 +7,7 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 ## Selected Projects
 
 - <img src="./assets/jira-commands-icon.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
+- 🤫 [cora](https://github.com/keton-id/cora) — Zero-knowledge secret injection for AI agents, written in Zig.
 - 📦 [pkgmap](https://github.com/mulhamna/pkgmap) — A monitoring tool for understanding package states and dependency relationships.
 - ⚡️ [portbar](https://github.com/mulhamna/portbar) — A lightweight Mac utility for monitoring ports and local service exposure.
 - 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
@@ -14,7 +15,7 @@ I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 ## Activity
 
-![mulhamna's GitHub contribution chart](https://ghchart.rshah.org/40c463/mulhamna)
+![mulhamna's GitHub activity graph](https://github-readme-activity-graph.vercel.app/graph?username=mulhamna&bg_color=0d1117&color=c9d1d9&line=40c463&point=40c463&area=true&hide_border=true)
 
 ## GitHub Stats
 
