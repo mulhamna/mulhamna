@@ -1,7 +1,7 @@
 # 👋 Hi, I'm Mulham
 
-I'm a Technical Product Manager who builds practical tools for terminals, bots, and AI-assisted workflows.  
-I enjoy turning operational pain points into usable internal products.  
+I'm a Technical Product Manager
+
 I'm also a contributor at **[keton-id](https://github.com/keton-id)**.
 
 ## Selected Projects
