@@ -5,7 +5,7 @@ I'm a Technical Product Manager
 ## Selected Projects
 
 - <img src="./assets/jira-commands-icon.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
-- 🧪 [suitest](https://github.com/suiflex/suitest) — Self-hostable, MCP-native testing platform for manual test management, deterministic runs, and optional AI.
+- 🧪 [suitest](https://github.com/suiflex/suitest) — Self-hostable, MCP-native testing platform for manual test management, deterministic runs, and optional AI. Try it at **[suitest.suiflex.dev](https://suitest.suiflex.dev/)**.
 - 🗄️ [rdb](https://github.com/suiflex/rdb) — A Rust-built database editor.
 - 🤫 [cora](https://github.com/keton-id/cora) — Zero-knowledge secret injection for AI agents, written in Zig.
 - 📦 [pkgmap](https://github.com/mulhamna/pkgmap) — A monitoring tool for understanding package states and dependency relationships.
