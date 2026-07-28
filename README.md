@@ -9,9 +9,10 @@ I'm a Technical Product Manager
 - 🗄️ [rdb](https://github.com/suiflex/rdb) — A Rust-built database editor. Try it at **[rdb.suiflex.dev](https://rdb.suiflex.dev/)**.
 - 🤫 [cora](https://github.com/keton-id/cora) — Zero-knowledge secret injection for AI agents, written in Zig.
 - 📦 [pkgmap](https://github.com/mulhamna/pkgmap) — A monitoring tool for understanding package states and dependency relationships.
-- 🚢 [addx](https://github.com/mulhamna/addx) - Transporter MCP / Skill / Plugin / Extension for CLI Agent.
+- 🎯 [ForgeGuard](https://github.com/suiflex/forgeguard) - Token-efficient engineering discipline for AI coding agents.
 - ⚡️ [portbar](https://github.com/mulhamna/portbar) — A lightweight Mac utility for monitoring ports and local service exposure.
 - 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
+- 🚢 [addx](https://github.com/mulhamna/addx) - Transporter MCP / Skill / Plugin / Extension for CLI Agent.
 - 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
 
 ## Activity
