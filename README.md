@@ -17,7 +17,7 @@ I'm a Technical Product Manager
 
 ## Activity
 
-![mulhamna's GitHub activity graph](https://github-readme-activity-graph.vercel.app/graph?username=mulhamna&bg_color=0d1117&color=c9d1d9&line=40c463&point=40c463&area=true&hide_border=true)
+![mulhamna's GitHub activity graph](activity-graph.svg)
 
 ## GitHub Stats
 
