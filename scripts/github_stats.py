@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
 """Self-hosted GitHub Stats + Streak cards as static SVGs.
 
-Replaces github-profile-summary-cards (stats) and streak-stats
-(streak) third-party services. Data via GitHub APIs only:
+Original design (not a clone of any third-party card):
+  stats.svg  — icon-chip rows with dotted leaders and bold values
+  streak.svg — hero current-streak number, longest/total column,
+               and a 52-day activity sparkline along the bottom
+
+Data via GitHub APIs only:
   - REST search/issues        -> all-time PR / issue counts
-  - GraphQL user + repos      -> stars, contributed-to, account age
-  - contributionsCollection   -> daily counts (paged back to account
-                                 creation) for totals and streaks
+  - GraphQL user + repos      -> stars, contributed-to
+  - contributionsCollection   -> commits (12mo) + daily history
+                                 (paged back to account creation)
 
 Env: GH_LOGIN, STAT_OUT (stats.svg), STREAK_OUT (streak.svg)
 Icons: assets/icons/octicons/*.svg, inlined into the SVGs.
 """
 
 import json
-import math
 import os
 import re
 import subprocess
 import sys
-from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 LOGIN = os.environ.get("GH_LOGIN", "mulhamna")
@@ -30,8 +32,11 @@ REPO_ROOT = os.path.dirname(HERE)
 OCTI = os.path.join(REPO_ROOT, "assets", "icons", "octicons")
 
 BG, FG, MUTED, TRACK = "#0d1117", "#c9d1d9", "#8b949e", "#21262d"
-BLUE, GREEN, ORANGE = "#58a6ff", "#40c463", "#f0883e"
+GREEN, BLUE, YELLOW, RED, PURPLE = ("#40c463", "#58a6ff", "#e3b341",
+                                    "#f85149", "#bc8cff")
 FONT = "Segoe UI, Ubuntu, Sans-serif"
+
+SPARK_DAYS = 52
 
 
 def gql(query: str, **vars) -> dict:
@@ -69,8 +74,6 @@ query($login:String!){
     repositoriesContributedTo(first:1){ totalCount }
     contributionsCollection{
       totalCommitContributions
-      totalPullRequestContributions
-      totalIssueContributions
     }
   }
 }"""
@@ -121,21 +124,29 @@ def fmt(n) -> str:
     return f"{int(n):,}"
 
 
+def header(W: float, title: str) -> list[str]:
+    return [
+        f'<circle cx="26" cy="30" r="3.5" fill="{GREEN}"/>',
+        f'<text x="38" y="34.5" fill="{MUTED}" font-size="11.5" '
+        f'letter-spacing="2.5" font-family="{FONT}">{title}</text>',
+        f'<text x="{W - 24}" y="34.5" text-anchor="end" fill="{TRACK}" '
+        f'font-size="10.5" letter-spacing="1" font-family="{FONT}">@{LOGIN}</text>',
+    ]
+
+
 def main() -> None:
     prof = gql(PROFILE_Q, login=LOGIN)["user"]
     created = datetime.strptime(prof["createdAt"][:10], "%Y-%m-%d")
     stars = sum(r["stargazerCount"]
                 for r in prof["repositories"]["nodes"])
     contributed = prof["repositoriesContributedTo"]["totalCount"]
-    coll = prof["contributionsCollection"]
-    commits_1y = coll["totalCommitContributions"]
+    commits_1y = prof["contributionsCollection"]["totalCommitContributions"]
     prs_all = search_count(f"author:{LOGIN}+type:pr")
     issues_all = search_count(f"author:{LOGIN}+type:issue")
 
     print("fetching full history for streaks ...")
     days = fetch_all_days(created)
     ordered = sorted(days.items())
-    first_day = ordered[0][0] if ordered else created.strftime("%Y-%m-%d")
     total_all = sum(c for _, c in ordered)
 
     cur, longest, run = 0, 0, 0
@@ -147,86 +158,100 @@ def main() -> None:
             cur += 1
         else:
             break
-
-    streak_dates = ""
-    for date_s, c in reversed(ordered):
-        if c > 0:
-            streak_dates = date_s
-        elif streak_dates:
-            break
-    rng = (f"{datetime.strptime(first_day, '%Y-%m-%d'):%b %-d, %Y} - Present")
+    streak_since = next((d for d, c in reversed(ordered) if c == 0 and d < ordered[-1][0]),
+                        ordered[0][0])
+    # first day of the current streak:
+    idx = len(ordered) - cur
+    streak_first = ordered[idx][0] if cur else ordered[-1][0]
 
     print(f"stars={stars} contributed={contributed} commits1y={commits_1y} "
           f"prs={prs_all} issues={issues_all}")
-    print(f"total={total_all} current={cur} longest={longest} since={first_day}")
+    print(f"total={total_all} current={cur} longest={longest} "
+          f"since={streak_first}")
 
     render_stats(stars, commits_1y, prs_all, issues_all, contributed)
-    render_streak(total_all, cur, longest, streak_dates, rng)
+    render_streak(total_all, cur, longest, streak_first,
+                  ordered[-SPARK_DAYS:])
 
 
 def render_stats(stars, commits, prs, issues, contributed) -> None:
-    W, H = 340, 200
-    rows = [("star-16", "Total Stars", stars),
-            ("git-commit-16", "Total Commits", commits),
-            ("git-pull-request-16", "Total PRs", prs),
-            ("issue-opened-16", "Total Issues", issues),
-            ("repo-16", "Contributed to", contributed)]
+    W, H = 430, 220
+    rows = [("star-16", "Total Stars", stars, YELLOW),
+            ("git-commit-16", "Total Commits", commits, GREEN),
+            ("git-pull-request-16", "Total PRs", prs, BLUE),
+            ("issue-opened-16", "Total Issues", issues, RED),
+            ("repo-16", "Contributed to", contributed, PURPLE)]
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="GitHub stats for {LOGIN}">',
         f'<title>{LOGIN} GitHub stats</title>',
-        f'<rect width="{W}" height="{H}" fill="{BG}" rx="6"/>',
-        f'<text x="20" y="30" fill="{FG}" font-size="17" font-weight="700" font-family="{FONT}">GitHub Stats</text>',
-        f'<line x1="20" y1="42" x2="{W - 20}" y2="42" stroke="{TRACK}"/>',
-        octicon("mark-github-16", 268, 118, 52, "#30363d"),
+        f'<rect width="{W}" height="{H}" fill="{BG}" rx="10"/>',
     ]
-    y = 64
-    for icon, label, val in rows:
-        parts.append(octicon(icon, 22, y - 11, 15, MUTED))
-        parts.append(f'<text x="44" y="{y}" fill="{FG}" font-size="12.5" '
+    parts += header(W, "GITHUB STATS")
+    y0, row_h = 66, 29
+    for i, (icon, label, val, chip) in enumerate(rows):
+        y = y0 + i * row_h
+        parts.append(f'<rect x="24" y="{y - 14.5}" width="20" height="20" '
+                     f'rx="6" fill="{chip}"/>')
+        parts.append(octicon(icon, 28, y - 10.5, 12, BG))
+        parts.append(f'<text x="58" y="{y}" fill="{FG}" font-size="13" '
                      f'font-family="{FONT}">{label}</text>')
-        parts.append(f'<text x="222" y="{y}" text-anchor="end" fill="{BLUE}" '
-                     f'font-size="13" font-weight="700" font-family="{FONT}">'
-                     f'{fmt(val)}</text>')
-        y += 26
-    parts.append(f'<text x="20" y="{H - 10}" fill="{MUTED}" font-size="8.5" '
-                 f'font-family="{FONT}">commits: last 12 months · PRs/issues: all time</text>')
+        lw = len(label) * 7.3
+        parts.append(f'<line x1="{58 + lw + 8:.0f}" y1="{y - 4}" x2="330" '
+                     f'y2="{y - 4}" stroke="{TRACK}" stroke-width="1" '
+                     f'stroke-dasharray="2 4"/>')
+        parts.append(f'<text x="{W - 24}" y="{y}" text-anchor="end" fill="{FG}" '
+                     f'font-size="15.5" font-weight="700" '
+                     f'font-family="{FONT}">{fmt(val)}</text>')
+    parts.append(f'<text x="24" y="{H - 12}" fill="{MUTED}" font-size="8.5" '
+                 f'font-family="{FONT}">commits: last 12 months · '
+                 f'PRs/issues: all time · stars: own repos</text>')
     parts.append("</svg>")
     open(STAT_OUT, "w", encoding="utf-8").write("\n".join(parts))
     print(f"wrote {STAT_OUT}")
 
 
-def render_streak(total_all, cur, longest, cur_since, rng) -> None:
-    W, H = 495, 195
-    cx, cy, r = 247, 96, 42
-    dash = 2 * math.pi * r
-    frac = min(cur / longest, 1.0) if longest else 0
+def render_streak(total_all, cur, longest, streak_first, recent) -> None:
+    W, H = 430, 220
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="GitHub streak for {LOGIN}">',
         f'<title>{LOGIN} GitHub streak</title>',
-        f'<rect width="{W}" height="{H}" fill="{BG}" rx="6"/>',
-        # left column
-        f'<text x="120" y="78" text-anchor="middle" fill="{BLUE}" font-size="30" font-weight="700" font-family="{FONT}">{fmt(total_all)}</text>',
-        f'<text x="120" y="102" text-anchor="middle" fill="{FG}" font-size="13" font-family="{FONT}">Total Contributions</text>',
-        f'<text x="120" y="120" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">{rng}</text>',
-        # dividers
-        f'<line x1="200" y1="30" x2="200" y2="165" stroke="{TRACK}"/>',
-        f'<line x1="295" y1="30" x2="295" y2="165" stroke="{TRACK}"/>',
-        # middle ring
-        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{TRACK}" stroke-width="7"/>',
-        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{GREEN}" stroke-width="7" '
-        f'stroke-linecap="round" stroke-dasharray="{dash * frac:.1f} {dash:.1f}" '
-        f'transform="rotate(-90 {cx} {cy})"/>',
-        octicon("flame-16", cx - 8, cy - r - 14, 16, GREEN),
-        f'<text x="{cx}" y="{cy + 9}" text-anchor="middle" fill="{FG}" font-size="26" font-weight="700" font-family="{FONT}">{fmt(cur)}</text>',
-        f'<text x="{cx}" y="{cy + 32}" text-anchor="middle" fill="{GREEN}" font-size="12" font-weight="600" font-family="{FONT}">Current Streak</text>',
-        f'<text x="{cx}" y="{cy + 48}" text-anchor="middle" fill="{MUTED}" font-size="9.5" font-family="{FONT}">'
-        f'{datetime.strptime(cur_since, "%Y-%m-%d"):%b %-d, %Y}</text>',
-        # right column
-        f'<text x="390" y="78" text-anchor="middle" fill="{BLUE}" font-size="30" font-weight="700" font-family="{FONT}">{fmt(longest)}</text>',
-        f'<text x="390" y="102" text-anchor="middle" fill="{FG}" font-size="13" font-family="{FONT}">Longest Streak</text>',
-        f'<text x="390" y="120" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">{rng}</text>',
-        "</svg>",
+        f'<rect width="{W}" height="{H}" fill="{BG}" rx="10"/>',
     ]
+    parts += header(W, "STREAKS")
+    # hero (left): flame + current streak
+    parts.append(octicon("flame-16", 28, 52, 30, GREEN))
+    parts.append(f'<text x="28" y="130" fill="{FG}" font-size="46" '
+                 f'font-weight="700" font-family="{FONT}">{fmt(cur)}</text>')
+    parts.append(f'<text x="28" y="152" fill="{GREEN}" font-size="11" '
+                 f'letter-spacing="2" font-family="{FONT}">CURRENT STREAK</text>')
+    parts.append(f'<text x="28" y="168" fill="{MUTED}" font-size="10" '
+                 f'font-family="{FONT}">'
+                 f'{datetime.strptime(streak_first, "%Y-%m-%d"):%b %-d, %Y}'
+                 f' - Present</text>')
+    # divider
+    parts.append(f'<line x1="245" y1="54" x2="245" y2="176" stroke="{TRACK}"/>')
+    # right column: longest + total
+    parts.append(f'<text x="262" y="78" fill="{MUTED}" font-size="10.5" '
+                 f'letter-spacing="1.5" font-family="{FONT}">LONGEST STREAK</text>')
+    parts.append(f'<text x="262" y="106" fill="{FG}" font-size="25" '
+                 f'font-weight="700" font-family="{FONT}">{fmt(longest)}</text>')
+    parts.append(f'<text x="262" y="142" fill="{MUTED}" font-size="10.5" '
+                 f'letter-spacing="1.5" font-family="{FONT}">TOTAL CONTRIBUTIONS</text>')
+    parts.append(f'<text x="262" y="170" fill="{FG}" font-size="25" '
+                 f'font-weight="700" font-family="{FONT}">{fmt(total_all)}</text>')
+    # sparkline of the last N days
+    if recent:
+        maxv = max(c for _, c in recent) or 1
+        x0, base, bw, gap = 28, 205, 6, 1
+        for j, (date_s, c) in enumerate(recent):
+            h = max(2.0, 26.0 * c / maxv)
+            x = x0 + j * (bw + gap)
+            label = (f'{datetime.strptime(date_s, "%Y-%m-%d"):%b %-d}: '
+                     f'{c} contributions')
+            parts.append(f'<rect x="{x:.1f}" y="{base - h:.1f}" width="{bw}" '
+                         f'height="{h:.1f}" rx="1.5" fill="{GREEN}" '
+                         f'fill-opacity="0.85"><title>{label}</title></rect>')
+    parts.append("</svg>")
     open(STREAK_OUT, "w", encoding="utf-8").write("\n".join(parts))
     print(f"wrote {STREAK_OUT}")
 
