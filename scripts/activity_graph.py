@@ -200,10 +200,22 @@ def cr_path(pts) -> str:
 def render(days, layers, colors, cal_total, start) -> None:
     n = len(days)
     W = 900
-    legend_cols, row_h = 2, 30
-    legend_rows = math.ceil(len(layers) / legend_cols)
-    legend_h = 56 + legend_rows * row_h
-    H = 330 + legend_h
+    row_h = 30
+    CHAR_W = 7.8  # approx px per char at font-size 13
+    GAP_X = 30
+    total_val = sum(v for _, v in layers)
+    items = []
+    for name, val in layers:
+        pct_s = f"{100 * val / total_val:.1f}%"
+        w = 18 + 8 + len(name) * CHAR_W + 10 + len(pct_s) * CHAR_W
+        items.append((name, val, pct_s, w))
+    legend_rows, x = 1, 40.0
+    for _, _, _, w in items:
+        if x + w > W - 40 and x > 40:
+            legend_rows += 1
+            x = 40.0
+        x += w + GAP_X
+    H = 330 + 58 + legend_rows * row_h
     LEFT, RIGHT, TOP, BOTTOM = 62, 30, 56, 40
     PW, PH = W - LEFT - RIGHT, 330 - TOP - BOTTOM
     base_y = TOP + PH
@@ -258,18 +270,21 @@ def render(days, layers, colors, cal_total, start) -> None:
                     f'{count} contributions</title></circle>')
 
     legend = []
-    for idx, (name, val) in enumerate(layers):
-        col, row = idx % legend_cols, idx // legend_cols
-        x = 40 + col * 430
-        y = 330 + 56 + row * row_h
-        pct = 100 * val / sum(v for _, v in layers)
+    x = 40.0
+    y = 330 + 58
+    for name, val, pct_s, w in items:
+        if x + w > W - 40 and x > 40:
+            x = 40.0
+            y += row_h
         c = color_of(name, colors)
         legend.append(icon_embed(name, x, y - 15, 18, c))
-        legend.append(f'<text x="{x + 26}" y="{y}" fill="{FG}" font-size="13" '
+        name_x = x + 26
+        legend.append(f'<text x="{name_x:.1f}" y="{y}" fill="{FG}" font-size="13" '
                       f'font-family="{FONT}">{name}</text>')
-        legend.append(f'<text x="{x + 380}" y="{y}" text-anchor="end" fill="{FG}" '
-                      f'font-size="13" font-weight="600" font-family="{FONT}">'
-                      f'{pct:.1f}%</text>')
+        pct_x = name_x + len(name) * CHAR_W + 10
+        legend.append(f'<text x="{pct_x:.1f}" y="{y}" fill="{FG}" font-size="13" '
+                      f'font-weight="600" font-family="{FONT}">{pct_s}</text>')
+        x += w + GAP_X
 
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Daily contribution activity for {LOGIN}">
   <title>{cal_total} contributions in the last 4 months</title>
