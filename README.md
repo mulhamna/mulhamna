@@ -22,16 +22,18 @@ I'm a Technical Product Manager
 ## GitHub Stats
 
 <p align="left">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=mulhamna&theme=github_dark" alt="mulhamna's GitHub stats" height="170" />
+  <img src="stats.svg" alt="mulhamna's GitHub stats" height="170" />
+  &nbsp;
+  <img src="streak.svg" alt="mulhamna's GitHub streak" height="170" />
 </p>
-
-![mulhamna's top languages by commit](top-languages.svg)
-
-![mulhamna's GitHub streak](https://streak-stats.demolab.com?user=mulhamna&theme=github-dark-blue&hide_border=true&ring=40c463&fire=40c463&currStreakLabel=40c463)
 
 ## Reach Me
 
-- [linktr.ee/mulhamna](https://linktr.ee/mulhamna)
+<p align="left">
+  <a href="https://linktr.ee/mulhamna">
+    <img src="https://img.shields.io/badge/Linktree-mulhamna-39E09B?style=for-the-badge&logo=linktree&logoColor=white" alt="mulhamna's Linktree" />
+  </a>
+</p>
 
 <!---
 mulhamna/mulhamna is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
