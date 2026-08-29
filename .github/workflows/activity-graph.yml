@@ -2,11 +2,11 @@ name: Activity Graph
 
 on:
   schedule:
-    - cron: "17 18 * * *"  # daily 01:17 WIB
+    - cron: "17 6,18 * * *"  # every 12h — 13:17 & 01:17 WIB
   workflow_dispatch:
   push:
     paths:
-      - "scripts/activity_graph.py"
+      - "scripts/*.py"
       - ".github/workflows/activity-graph.yml"
 
 permissions:
@@ -26,25 +26,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Render activity graph SVG
+      - name: Render multi-stack activity graph SVG
         env:
           GH_TOKEN: ${{ github.token }}
           GH_LOGIN: mulhamna
           OUT: activity-graph.svg
-        run: python scripts/activity_graph.py
-
-      - name: Render top languages SVG
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_LOGIN: mulhamna
-          OUT: top-languages.svg
-          STYLE: donut
-        run: python scripts/top_languages.py
+        run: python scripts/contribution_stack.py
 
       - name: Skip commit if unchanged
         id: diff
         run: |
-          if git diff --quiet -- activity-graph.svg top-languages.svg; then
+          if git diff --quiet -- activity-graph.svg; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -55,6 +47,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add activity-graph.svg top-languages.svg
-          git commit -m "chore: update profile cards"
+          git add activity-graph.svg
+          git commit -m "chore: update activity graph"
           git push
