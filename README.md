@@ -22,9 +22,9 @@ I'm a Technical Product Manager
 ## GitHub Stats
 
 <p align="left">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=mulhamna&theme=github_dark" alt="mulhamna's GitHub stats" height="160" />
+  <img src="stats.svg" alt="mulhamna's GitHub stats" height="170" />
   &nbsp;
-  <img src="https://streak-stats.demolab.com?user=mulhamna&theme=github-dark-blue&hide_border=true&ring=40c463&fire=40c463&currStreakLabel=40c463" alt="mulhamna's GitHub streak" height="160" />
+  <img src="streak.svg" alt="mulhamna's GitHub streak" height="170" />
 </p>
 
 ## Reach Me
