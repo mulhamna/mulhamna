@@ -26,12 +26,12 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Render multi-stack activity graph SVG
+      - name: Render daily activity graph SVG
         env:
           GH_TOKEN: ${{ github.token }}
           GH_LOGIN: mulhamna
           OUT: activity-graph.svg
-        run: python scripts/contribution_stack.py
+        run: python scripts/activity_graph.py
 
       - name: Skip commit if unchanged
         id: diff
