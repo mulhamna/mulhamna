@@ -29,7 +29,11 @@ I'm a Technical Product Manager
 
 ## Reach Me
 
-- [linktr.ee/mulhamna](https://linktr.ee/mulhamna)
+<p align="left">
+  <a href="https://linktr.ee/mulhamna">
+    <img src="https://img.shields.io/badge/Linktree-mulhamna-39E09B?style=for-the-badge&logo=linktree&logoColor=white" alt="mulhamna's Linktree" />
+  </a>
+</p>
 
 <!---
 mulhamna/mulhamna is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
