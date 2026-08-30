@@ -9,7 +9,7 @@ Original design (not a clone of any third-party card):
 Data via GitHub APIs only:
   - REST search/issues        -> all-time PR / issue counts
   - GraphQL user + repos      -> stars, contributed-to
-  - contributionsCollection   -> commits (12mo) + daily history
+  - contributionsCollection   -> commits (all time, paged) + daily history
                                  (paged back to account creation)
 
 Env: GH_LOGIN, STAT_OUT (stats.svg), STREAK_OUT (streak.svg)
@@ -72,9 +72,6 @@ query($login:String!){
       nodes{ stargazerCount }
     }
     repositoriesContributedTo(first:1){ totalCount }
-    contributionsCollection{
-      totalCommitContributions
-    }
   }
 }"""
 CAL_Q = """
@@ -84,6 +81,14 @@ query($login:String!,$from:DateTime!,$to:DateTime!){
       contributionCalendar{
         weeks{ contributionDays{ date contributionCount } }
       }
+    }
+  }
+}"""
+COMMITS_Q = """
+query($login:String!,$from:DateTime!,$to:DateTime!){
+  user(login:$login){
+    contributionsCollection(from:$from, to:$to){
+      totalCommitContributions
     }
   }
 }"""
@@ -107,6 +112,19 @@ def fetch_all_days(created: datetime) -> dict[str, int]:
                     days[d["date"]] = d["contributionCount"]
         start = end + timedelta(days=1)
     return days
+
+
+def fetch_all_commits(created: datetime) -> int:
+    """Total commit contributions from account creation to now, in <=1y chunks."""
+    total = 0
+    start = created
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    while start < now:
+        end = min(start + timedelta(days=360), now)
+        data = gql(COMMITS_Q, login=LOGIN, **{"from": iso(start), "to": iso(end)})
+        total += data["user"]["contributionsCollection"]["totalCommitContributions"]
+        start = end + timedelta(days=1)
+    return total
 
 
 def octicon(name: str, x: float, y: float, size: float, color: str) -> str:
@@ -140,7 +158,7 @@ def main() -> None:
     stars = sum(r["stargazerCount"]
                 for r in prof["repositories"]["nodes"])
     contributed = prof["repositoriesContributedTo"]["totalCount"]
-    commits_1y = prof["contributionsCollection"]["totalCommitContributions"]
+    commits_all = fetch_all_commits(created)
     prs_all = search_count(f"author:{LOGIN}+type:pr")
     issues_all = search_count(f"author:{LOGIN}+type:issue")
 
@@ -164,12 +182,12 @@ def main() -> None:
     idx = len(ordered) - cur
     streak_first = ordered[idx][0] if cur else ordered[-1][0]
 
-    print(f"stars={stars} contributed={contributed} commits1y={commits_1y} "
+    print(f"stars={stars} contributed={contributed} commitsAll={commits_all} "
           f"prs={prs_all} issues={issues_all}")
     print(f"total={total_all} current={cur} longest={longest} "
           f"since={streak_first}")
 
-    render_stats(stars, commits_1y, prs_all, issues_all, contributed)
+    render_stats(stars, commits_all, prs_all, issues_all, contributed)
     render_streak(total_all, cur, longest, streak_first,
                   ordered[-SPARK_DAYS:])
 
@@ -203,8 +221,8 @@ def render_stats(stars, commits, prs, issues, contributed) -> None:
                      f'font-size="15.5" font-weight="700" '
                      f'font-family="{FONT}">{fmt(val)}</text>')
     parts.append(f'<text x="24" y="{H - 12}" fill="{MUTED}" font-size="8.5" '
-                 f'font-family="{FONT}">commits: last 12 months · '
-                 f'PRs/issues: all time · stars: own repos</text>')
+                 f'font-family="{FONT}">commits/PRs/issues: all time · '
+                 f'stars: own repos</text>')
     parts.append("</svg>")
     open(STAT_OUT, "w", encoding="utf-8").write("\n".join(parts))
     print(f"wrote {STAT_OUT}")
