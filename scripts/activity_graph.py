@@ -242,14 +242,15 @@ def cr_path(pts) -> str:
 def render(days, layers, colors, cal_total, start) -> None:
     n = len(days)
     W = 900
-    row_h = 30
+    row_h = 34
     CHAR_W = 7.8  # approx px per char at font-size 13
-    GAP_X = 30
+    GAP_X = 22
     total_val = sum(v for _, v in layers)
     items = []
     for name, val in layers:
         pct_s = f"{100 * val / total_val:.1f}%"
-        w = 18 + 8 + len(name) * CHAR_W + 10 + len(pct_s) * CHAR_W
+        # pill footprint: pad_l + icon + gap + name + gap + pct + pad_r
+        w = 8 + 16 + 6 + len(name) * CHAR_W + 8 + len(pct_s) * CHAR_W + 12
         items.append((name, val, pct_s, w))
     legend_rows, x = 1, 40.0
     for _, _, _, w in items:
@@ -319,13 +320,18 @@ def render(days, layers, colors, cal_total, start) -> None:
             x = 40.0
             y += row_h
         c = color_of(name, colors)
-        legend.append(icon_embed(name, x, y - 15, 18, c))
-        name_x = x + 26
-        legend.append(f'<text x="{name_x:.1f}" y="{y}" fill="{FG}" font-size="13" '
+        # pill badge: tinted rounded background + border in the stack color,
+        # visually binding icon, name and percentage into one unit
+        legend.append(f'<rect x="{x:.1f}" y="{y - 19}" width="{w}" height="27" '
+                      f'rx="13.5" fill="{c}" fill-opacity="0.11" '
+                      f'stroke="{c}" stroke-opacity="0.38" stroke-width="1"/>')
+        legend.append(icon_embed(name, x + 8, y - 15, 16, c))
+        name_x = x + 8 + 16 + 6
+        legend.append(f'<text x="{name_x:.1f}" y="{y}" fill="{FG}" font-size="12.5" '
                       f'font-family="{FONT}">{name}</text>')
-        pct_x = name_x + len(name) * CHAR_W + 10
-        legend.append(f'<text x="{pct_x:.1f}" y="{y}" fill="{FG}" font-size="13" '
-                      f'font-weight="600" font-family="{FONT}">{pct_s}</text>')
+        pct_x = name_x + len(name) * CHAR_W + 8
+        legend.append(f'<text x="{pct_x:.1f}" y="{y}" fill="{c}" font-size="12.5" '
+                      f'font-weight="700" font-family="{FONT}">{pct_s}</text>')
         x += w + GAP_X
 
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Daily contribution activity for {LOGIN}">
