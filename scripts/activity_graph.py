@@ -5,9 +5,13 @@ Single green line (ups and downs) at DAILY resolution over the
 last ~4 months, with one visible dot per day. Legend below the
 chart: stack icon + name + share of commits (per language).
 
+Legend is ALL-TIME (paged back to account creation); the chart line
+stays on the recent window.
+
 Data (GitHub APIs only, no third-party services):
   - contributionsCollection(from, to) -> contributionCalendar daily counts
-  - commitContributionsByRepository   -> commits per repo x language byte shares
+  - commitContributionsByRepository (paged, all time) -> per-repo commits
+    x language byte shares
 
 Env: GH_LOGIN, OUT (activity-graph.svg), WINDOW_DAYS (122), MIN_PCT (1.0)
 Icons: assets/icons/<slug>.svg (simple-icons), inlined into the SVG.
@@ -75,6 +79,14 @@ query($login:String!,$from:DateTime!,$to:DateTime!){
       contributionCalendar{
         weeks{ contributionDays{ date contributionCount } }
       }
+    }
+  }
+}"""
+
+BYREPO_Q = """
+query($login:String!,$from:DateTime!,$to:DateTime!){
+  user(login:$login){
+    contributionsCollection(from:$from, to:$to){
       commitContributionsByRepository(maxRepositories: 100){
         contributions{ totalCount }
         repository{
@@ -89,7 +101,18 @@ query($login:String!,$from:DateTime!,$to:DateTime!){
 }"""
 
 
-def fetch_days(start: datetime, end: datetime) -> tuple[list[tuple[str, int]], list]:
+CREATED_Q = """
+query($login:String!){
+  user(login:$login){ createdAt }
+}"""
+
+
+def fetch_created_date() -> datetime:
+    data = gql(CREATED_Q, login=LOGIN)
+    return datetime.strptime(data["user"]["createdAt"][:10], "%Y-%m-%d")
+
+
+def fetch_days(start: datetime, end: datetime) -> list[tuple[str, int]]:
     data = gql(COLL_Q, login=LOGIN, **{"from": iso(start), "to": iso(end)})
     coll = data["user"]["contributionsCollection"]
     days = []
@@ -98,7 +121,24 @@ def fetch_days(start: datetime, end: datetime) -> tuple[list[tuple[str, int]], l
             if start.strftime("%Y-%m-%d") <= d["date"] <= end.strftime("%Y-%m-%d"):
                 days.append((d["date"], d["contributionCount"]))
     days.sort()
-    return days, coll["commitContributionsByRepository"]
+    return days
+
+
+def fetch_all_byrepo(created: datetime, now: datetime) -> list:
+    """commitContributionsByRepository over all time, in <=1y chunks."""
+    entries: dict[str, dict] = {}
+    start = created
+    while start < now:
+        end = min(start + timedelta(days=360), now)
+        data = gql(BYREPO_Q, login=LOGIN, **{"from": iso(start), "to": iso(end)})
+        for e in data["user"]["contributionsCollection"]["commitContributionsByRepository"]:
+            name = e["repository"]["nameWithOwner"]
+            if name not in entries:
+                entries[name] = {"contributions": {"totalCount": 0},
+                                 "repository": e["repository"]}
+            entries[name]["contributions"]["totalCount"] += e["contributions"]["totalCount"]
+        start = end + timedelta(days=1)
+    return list(entries.values())
 
 
 def iso(d: datetime) -> str:
@@ -135,11 +175,13 @@ def main() -> None:
     now = datetime.now(timezone.utc).replace(tzinfo=None)
     start = (now - timedelta(days=WINDOW_DAYS - 1)).replace(
         hour=0, minute=0, second=0, microsecond=0)
-    days, entries = fetch_days(start, now)
+    days = fetch_days(start, now)
     if not days:
         sys.exit("no contribution data in window")
 
     cal_total = sum(c for _, c in days)
+    created = fetch_created_date()
+    entries = fetch_all_byrepo(created, now)
     shares, colors = stack_shares(entries)
     commit_total = sum(shares.values())
     print(f"window: {days[0][0]} .. {days[-1][0]}  "
@@ -297,7 +339,7 @@ def render(days, layers, colors, cal_total, start) -> None:
   <path d="{area_d}" fill="{GREEN}" fill-opacity="0.15"/>
   <path d="{line_d}" fill="none" stroke="{GREEN}" stroke-width="2"/>
   {"".join(dots)}
-  <text x="40" y="{330 + 36}" fill="{MUTED}" font-size="11" font-family="{FONT}">share of commits by stack</text>
+  <text x="40" y="{330 + 36}" fill="{MUTED}" font-size="11" font-family="{FONT}">share of commits by stack · all time</text>
   {"".join(legend)}
 </svg>
 '''
