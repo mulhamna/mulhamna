@@ -28,14 +28,17 @@ jobs:
 
       - name: Render daily activity graph SVG
         env:
-          GH_TOKEN: ${{ github.token }}
+          # PAT with access to private repos so private contributions are counted.
+          # Falls back to github.token (public contributions only) if unset.
+          GH_TOKEN: ${{ secrets.PROFILE_TOKEN || github.token }}
           GH_LOGIN: mulhamna
           OUT: activity-graph.svg
         run: python scripts/activity_graph.py
 
       - name: Render stats and streak SVGs
         env:
-          GH_TOKEN: ${{ github.token }}
+          # Same token policy as the graph step above.
+          GH_TOKEN: ${{ secrets.PROFILE_TOKEN || github.token }}
           GH_LOGIN: mulhamna
           STAT_OUT: stats.svg
           STREAK_OUT: streak.svg
