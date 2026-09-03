@@ -13,12 +13,12 @@
 <path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z" fill="#0d1117" transform="translate(28.0,84.5) scale(0.7500)"/>
 <text x="58" y="95" fill="#c9d1d9" font-size="13" font-family="Segoe UI, Ubuntu, Sans-serif">Total Commits</text>
 <line x1="161" y1="91" x2="330" y2="91" stroke="#21262d" stroke-width="1" stroke-dasharray="2 4"/>
-<text x="406" y="95" text-anchor="end" fill="#c9d1d9" font-size="15.5" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">4,040</text>
+<text x="406" y="95" text-anchor="end" fill="#c9d1d9" font-size="15.5" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">4,047</text>
 <rect x="24" y="109.5" width="20" height="20" rx="6" fill="#58a6ff"/>
 <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z" fill="#0d1117" transform="translate(28.0,113.5) scale(0.7500)"/>
 <text x="58" y="124" fill="#c9d1d9" font-size="13" font-family="Segoe UI, Ubuntu, Sans-serif">Total PRs</text>
 <line x1="132" y1="120" x2="330" y2="120" stroke="#21262d" stroke-width="1" stroke-dasharray="2 4"/>
-<text x="406" y="124" text-anchor="end" fill="#c9d1d9" font-size="15.5" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">1,233</text>
+<text x="406" y="124" text-anchor="end" fill="#c9d1d9" font-size="15.5" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">1,234</text>
 <rect x="24" y="138.5" width="20" height="20" rx="6" fill="#f85149"/>
 <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="#0d1117" transform="translate(28.0,142.5) scale(0.7500)"/>
 <text x="58" y="153" fill="#c9d1d9" font-size="13" font-family="Segoe UI, Ubuntu, Sans-serif">Total Issues</text>
