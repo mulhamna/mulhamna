@@ -55,16 +55,6 @@ FALLBACK_COLORS = {
     "CSS": "#663399", "Svelte": "#ff3e00", "Slint": "#ff8b00", "Other": MUTED,
 }
 
-# Own projects rendered as their own legend entry instead of being
-# absorbed into generic language buckets (Rust/TS/etc).
-BRANDS = {"RDB": "#4ade80", "Suitest": "#4ade80", "ForgeGuard": "#4ade80"}
-REPO_BRAND = {
-    "suiflex/rdb": "RDB",
-    "suiflex/suitest": "Suitest",
-    "suiflex/ForgeGuard": "ForgeGuard",
-}
-
-
 def gql(query: str, **vars) -> dict:
     args = ["gh", "api", "graphql", "-f", f"query={query}"]
     for k, v in vars.items():
@@ -157,18 +147,14 @@ def iso(d: datetime) -> str:
 def stack_shares(entries) -> tuple[dict[str, float], dict[str, str]]:
     """Stack -> share of all commits; Stack -> color.
 
-    Own projects (REPO_BRAND) are promoted to their own stack entry and
-    excluded from the generic language buckets.
+    Every repo contributes through its language byte shares —
+    no repo is promoted to a branded legend entry.
     """
     lang_commits: dict[str, float] = defaultdict(float)
     colors: dict[str, str] = {}
     for e in entries:
         count = e["contributions"]["totalCount"]
         if count <= 0:
-            continue
-        brand = REPO_BRAND.get(e["repository"]["nameWithOwner"])
-        if brand:
-            lang_commits[brand] += count
             continue
         edges = e["repository"]["languages"]["edges"]
         total_bytes = sum(edge["size"] for edge in edges)
@@ -181,8 +167,6 @@ def stack_shares(entries) -> tuple[dict[str, float], dict[str, str]]:
             lang_commits[name] += count * edge["size"] / total_bytes
             if edge["node"].get("color"):
                 colors[name] = edge["node"]["color"]
-    for brand, color in BRANDS.items():
-        colors[brand] = color
     return dict(lang_commits), colors
 
 
@@ -230,23 +214,13 @@ def color_of(name: str, colors: dict) -> str:
 def icon_embed(name: str, x: float, y: float, size: float, color: str) -> str:
     dot = (f'<circle cx="{x + size / 2}" cy="{y + size / 2}" r="{size / 2}" '
            f'fill="{color}"/>')
-    slug = ICON_SLUGS.get(name) or (
-        name.lower() if name in BRANDS else None)
+    slug = ICON_SLUGS.get(name)
     if not slug:
         return dot
     path_file = os.path.join(ICON_DIR, f"{slug}.svg")
     if not os.path.exists(path_file):
         return dot
     content = open(path_file, encoding="utf-8").read()
-    if name in BRANDS:
-        # full multi-element icon: inline everything except the
-        # full-bleed tile rect; artwork already carries its colors
-        inner = re.sub(r"^.*?<svg[^>]*>", "", content, flags=re.S)
-        inner = re.sub(r"</svg>\s*$", "", inner, flags=re.S).strip()
-        inner = re.sub(r'<rect width="32" height="32"[^>]*/>', "", inner)
-        s = size / 32.0
-        return (f'<g transform="translate({x:.1f},{y:.1f}) scale({s:.4f})">'
-                f'{inner}</g>')
     m = re.search(r'<path[^>]*\bd="([^"]+)"', content)
     if not m:
         return dot
