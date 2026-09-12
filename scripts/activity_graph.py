@@ -268,11 +268,15 @@ def render(days, layers, colors, cal_total, start) -> None:
 
     values = [c for _, c in days]
     v_max = max(values) or 1
+    # smallest 1/2/5 step that keeps the tick count <= 5. The old
+    # 3 <= v_max / s <= 6 window had gaps (e.g. v_max 121-149 matched
+    # neither 20 nor 50) and fell back to step=1, drawing one
+    # gridline/label per contribution unit — a solid unreadable block.
     step = 1
     for mult in (1, 2, 5):
-        for k in range(0, 7):
+        for k in range(0, 8):
             s = mult * 10 ** k
-            if 3 <= v_max / s <= 6:
+            if v_max / s <= 5:
                 step = s
                 break
         if step > 1:
