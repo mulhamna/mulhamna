@@ -14,7 +14,7 @@ I'm a Technical Product Manager
 - 🚢 [addx](https://github.com/mulhamna/addx) - Transporter MCP / Skill / Plugin / Extension for CLI Agent.
 - 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
 
-### Org Suiflex
+### <img src="./assets/icons/projects/suiflex.png" width="20" alt="Suiflex logo" /> [Suiflex](https://github.com/suiflex)
 
 - <img src="./assets/icons/projects/rdb.svg" width="16" alt="rdb icon" /> [rdb](https://github.com/suiflex/rdb) — A Rust-built database editor. Try it at **[rdb.suiflex.dev](https://rdb.suiflex.dev/)**.
 - <img src="./assets/icons/projects/suitest.svg" width="16" alt="suitest icon" /> [suitest](https://github.com/suiflex/suitest) — Self-hostable, MCP-native testing platform for manual test management, & deterministic runs. Try it at **[suitest.suiflex.dev](https://suitest.suiflex.dev/)**.
