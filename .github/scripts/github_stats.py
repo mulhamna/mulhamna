@@ -24,11 +24,11 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 LOGIN = os.environ.get("GH_LOGIN", "mulhamna")
-STAT_OUT = os.environ.get("STAT_OUT", "stats.svg")
-STREAK_OUT = os.environ.get("STREAK_OUT", "streak.svg")
+STAT_OUT = os.environ.get("STAT_OUT", "assets/cards/stats.svg")
+STREAK_OUT = os.environ.get("STREAK_OUT", "assets/cards/streak.svg")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(HERE)
+REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
 OCTI = os.path.join(REPO_ROOT, "assets", "icons", "octicons")
 
 BG, FG, MUTED, TRACK = "#0d1117", "#c9d1d9", "#8b949e", "#21262d"

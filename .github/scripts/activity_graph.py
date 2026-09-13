@@ -27,13 +27,13 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 LOGIN = os.environ.get("GH_LOGIN", "mulhamna")
-OUT = os.environ.get("OUT", "activity-graph.svg")
+OUT = os.environ.get("OUT", "assets/cards/activity-graph.svg")
 WINDOW_DAYS = int(os.environ.get("WINDOW_DAYS", "122"))
 MIN_PCT = float(os.environ.get("MIN_PCT", "1.0"))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(HERE)
-ICON_DIR = os.path.join(REPO_ROOT, "assets", "icons")
+REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
+ICON_DIR = os.path.join(REPO_ROOT, "assets", "icons", "stack")
 
 BG, FG, MUTED, TRACK = "#0d1117", "#c9d1d9", "#8b949e", "#21262d"
 GREEN = "#40c463"
