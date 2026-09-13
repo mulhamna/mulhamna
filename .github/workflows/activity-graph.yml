@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "scripts/*.py"
+      - ".github/scripts/*.py"
       - ".github/workflows/activity-graph.yml"
 
 permissions:
@@ -33,7 +33,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PROFILE_TOKEN || github.token }}
           GH_LOGIN: mulhamna
           OUT: activity-graph.svg
-        run: python scripts/activity_graph.py
+        run: python .github/scripts/activity_graph.py
 
       - name: Render stats and streak SVGs
         env:
@@ -42,7 +42,7 @@ jobs:
           GH_LOGIN: mulhamna
           STAT_OUT: stats.svg
           STREAK_OUT: streak.svg
-        run: python scripts/github_stats.py
+        run: python .github/scripts/github_stats.py
 
       - name: Skip commit if unchanged
         id: diff

@@ -28,7 +28,7 @@ STAT_OUT = os.environ.get("STAT_OUT", "stats.svg")
 STREAK_OUT = os.environ.get("STREAK_OUT", "streak.svg")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(HERE)
+REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
 OCTI = os.path.join(REPO_ROOT, "assets", "icons", "octicons")
 
 BG, FG, MUTED, TRACK = "#0d1117", "#c9d1d9", "#8b949e", "#21262d"
