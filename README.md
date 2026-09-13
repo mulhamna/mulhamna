@@ -23,6 +23,7 @@ I'm a Technical Product Manager
 - <img src="./assets/icons/projects/fluxguard.svg" width="16" alt="FluxGuard icon" /> [FluxGuard](https://github.com/suiflex/FluxGuard) — Resource-aware agent tooling for quota, budget, and context window flow control.
 - <img src="./assets/icons/projects/websift.png" width="16" alt="websift icon" /> [websift](https://github.com/suiflex/websift) — Web retrieval engine for AI agents to search, research, scrape, and crawl.
 - <img src="./assets/icons/projects/companion.svg" width="16" alt="companion icon" /> [companion](https://github.com/suiflex/companion) — AI meeting assistant capturing Meet and Teams captions into structured Markdown notes.
+- <img src="./assets/icons/projects/kurir.svg" width="16" alt="kurir icon" /> [kurir](https://github.com/suiflex/kurir) — Portable MCP server registration and harness integration toolkit.
 
 ## Activity
 
