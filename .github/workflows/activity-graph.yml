@@ -32,7 +32,7 @@ jobs:
           # Falls back to github.token (public contributions only) if unset.
           GH_TOKEN: ${{ secrets.PROFILE_TOKEN || github.token }}
           GH_LOGIN: mulhamna
-          OUT: activity-graph.svg
+          OUT: assets/cards/activity-graph.svg
         run: python .github/scripts/activity_graph.py
 
       - name: Render stats and streak SVGs
@@ -40,14 +40,14 @@ jobs:
           # Same token policy as the graph step above.
           GH_TOKEN: ${{ secrets.PROFILE_TOKEN || github.token }}
           GH_LOGIN: mulhamna
-          STAT_OUT: stats.svg
-          STREAK_OUT: streak.svg
+          STAT_OUT: assets/cards/stats.svg
+          STREAK_OUT: assets/cards/streak.svg
         run: python .github/scripts/github_stats.py
 
       - name: Skip commit if unchanged
         id: diff
         run: |
-          if git diff --quiet -- activity-graph.svg stats.svg streak.svg; then
+          if git diff --quiet -- assets/cards/activity-graph.svg assets/cards/stats.svg assets/cards/streak.svg; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -58,6 +58,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add activity-graph.svg stats.svg streak.svg
+          git add assets/cards/activity-graph.svg assets/cards/stats.svg assets/cards/streak.svg
           git commit -m "chore: update profile cards"
           git push

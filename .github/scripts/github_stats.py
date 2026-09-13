@@ -24,8 +24,8 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 LOGIN = os.environ.get("GH_LOGIN", "mulhamna")
-STAT_OUT = os.environ.get("STAT_OUT", "stats.svg")
-STREAK_OUT = os.environ.get("STREAK_OUT", "streak.svg")
+STAT_OUT = os.environ.get("STAT_OUT", "assets/cards/stats.svg")
+STREAK_OUT = os.environ.get("STREAK_OUT", "assets/cards/streak.svg")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
