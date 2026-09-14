@@ -4,6 +4,19 @@ I'm a Technical Product Manager
 
 ## Selected Projects
 
+### <img src="./assets/icons/projects/suiflex.png" width="20" alt="Suiflex logo" /> [Suiflex](https://github.com/suiflex)
+
+- <img src="./assets/icons/projects/arsy-code.svg" width="16" alt="arsy-code icon" /> [arsy-code](https://github.com/suiflex/arsy-code) — A local, auditable, model-independent software-engineering agent harness.
+- <img src="./assets/icons/projects/rdb.svg" width="16" alt="rdb icon" /> [rdb](https://github.com/suiflex/rdb) — A Rust-built database editor. Try it at **[rdb.suiflex.dev](https://rdb.suiflex.dev/)**.
+- <img src="./assets/icons/projects/suitest.svg" width="16" alt="suitest icon" /> [suitest](https://github.com/suiflex/suitest) — Self-hostable, MCP-native testing platform for manual test management, & deterministic runs. Try it at **[suitest.suiflex.dev](https://suitest.suiflex.dev/)**.
+- <img src="./assets/icons/projects/safehell.svg" width="16" alt="SafeHell icon" /> [SafeHell](https://github.com/suiflex/SafeHell) — A local approval broker for SSH commands requested by AI coding agents.
+- <img src="./assets/icons/projects/forgeguard.svg" width="16" alt="ForgeGuard icon" /> [ForgeGuard](https://github.com/suiflex/forgeguard) — Token-efficient engineering discipline and quality gates for AI coding agents.
+- <img src="./assets/icons/projects/fluxguard.svg" width="16" alt="FluxGuard icon" /> [FluxGuard](https://github.com/suiflex/FluxGuard) — Resource-aware agent tooling for quota, budget, and context window flow control.
+- <img src="./assets/icons/projects/websift.png" width="16" alt="websift icon" /> [websift](https://github.com/suiflex/websift) — Web retrieval engine for AI agents to search, research, scrape, and crawl.
+- <img src="./assets/icons/projects/companion.svg" width="16" alt="companion icon" /> [companion](https://github.com/suiflex/companion) — AI meeting assistant capturing Meet and Teams captions into structured Markdown notes.
+- <img src="./assets/icons/projects/kurir.svg" width="16" alt="kurir icon" /> [kurir](https://github.com/suiflex/kurir) — Portable MCP server registration and harness integration toolkit.
+
+
 ### Personal
 
 - <img src="./assets/icons/projects/jira-commands.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
@@ -13,17 +26,6 @@ I'm a Technical Product Manager
 - 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
 - 🚢 [addx](https://github.com/mulhamna/addx) - Transporter MCP / Skill / Plugin / Extension for CLI Agent.
 - 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
-
-### <img src="./assets/icons/projects/suiflex.png" width="20" alt="Suiflex logo" /> [Suiflex](https://github.com/suiflex)
-
-- <img src="./assets/icons/projects/rdb.svg" width="16" alt="rdb icon" /> [rdb](https://github.com/suiflex/rdb) — A Rust-built database editor. Try it at **[rdb.suiflex.dev](https://rdb.suiflex.dev/)**.
-- <img src="./assets/icons/projects/suitest.svg" width="16" alt="suitest icon" /> [suitest](https://github.com/suiflex/suitest) — Self-hostable, MCP-native testing platform for manual test management, & deterministic runs. Try it at **[suitest.suiflex.dev](https://suitest.suiflex.dev/)**.
-- <img src="./assets/icons/projects/safehell.svg" width="16" alt="SafeHell icon" /> [SafeHell](https://github.com/suiflex/SafeHell) — A local approval broker for SSH commands requested by AI coding agents.
-- <img src="./assets/icons/projects/forgeguard.svg" width="16" alt="ForgeGuard icon" /> [ForgeGuard](https://github.com/suiflex/forgeguard) — Token-efficient engineering discipline and quality gates for AI coding agents.
-- <img src="./assets/icons/projects/fluxguard.svg" width="16" alt="FluxGuard icon" /> [FluxGuard](https://github.com/suiflex/FluxGuard) — Resource-aware agent tooling for quota, budget, and context window flow control.
-- <img src="./assets/icons/projects/websift.png" width="16" alt="websift icon" /> [websift](https://github.com/suiflex/websift) — Web retrieval engine for AI agents to search, research, scrape, and crawl.
-- <img src="./assets/icons/projects/companion.svg" width="16" alt="companion icon" /> [companion](https://github.com/suiflex/companion) — AI meeting assistant capturing Meet and Teams captions into structured Markdown notes.
-- <img src="./assets/icons/projects/kurir.svg" width="16" alt="kurir icon" /> [kurir](https://github.com/suiflex/kurir) — Portable MCP server registration and harness integration toolkit.
 
 ## Activity
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" role="img" aria-labelledby="title">
+  <title id="title">ARSY logo</title>
+  <defs>
+    <linearGradient id="spectrum" x1="70" y1="900" x2="1180" y2="350" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#35c8ff"/>
+      <stop offset=".2" stop-color="#35d07f"/>
+      <stop offset=".4" stop-color="#e6c84f"/>
+      <stop offset=".56" stop-color="#ff6948"/>
+      <stop offset=".72" stop-color="#ed4f86"/>
+      <stop offset=".86" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#397cff"/>
+    </linearGradient>
+    <linearGradient id="core" x1="500" y1="950" x2="720" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00a878"/>
+      <stop offset="1" stop-color="#65e38d"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#spectrum)" d="M482 303h289c18 0 32 9 42 25l129 200c11 18 11 32 0 50l-58 73c-12 17-34 17-46-1L700 430c-9-14-20-19-36-19h-74c-16 0-27 5-36 19L416 650c-12 18-34 18-46 1l-58-73c-11-18-11-32 0-50l129-200c10-16 23-25 41-25Z"/>
+  <path fill="url(#spectrum)" d="M249 661h147c15 0 23 15 15 28L257 937c-7 11-17 16-30 16H95c-23 0-36-25-24-44l147-232c7-11 18-16 31-16Z"/>
+  <path fill="url(#spectrum)" d="M858 661h147c13 0 24 5 31 16l147 232c12 19-1 44-24 44h-132c-13 0-23-5-30-16L843 689c-8-13 0-28 15-28Z"/>
+  <path fill="url(#core)" d="M578 643h98c14 0 25 7 31 20l100 250c8 20-6 40-28 40H475c-22 0-36-20-28-40l100-250c6-13 17-20 31-20Z"/>
+</svg>
