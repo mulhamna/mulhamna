@@ -26,7 +26,7 @@ I'm a Technical Product Manager
 - 🚢 [addx](https://github.com/mulhamna/addx) - Transporter MCP / Skill / Plugin / Extension for CLI Agent.
 - 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
 +
-### Keton-id
+### [Keton-id](https://github.com/keton-id)
 
 - 🤫 [cora](https://github.com/keton-id/cora) — Zero-knowledge secret injection for AI agents, written in Zig.
 - <img src="./assets/icons/projects/probelm.svg" width="16" alt="probelm icon" /> [probelm](https://github.com/keton-id/probelm) — A Rust CLI for probing and benchmarking models through an OpenAI-compatible gateway.
