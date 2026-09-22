@@ -16,7 +16,6 @@ I'm a Technical Product Manager
 - <img src="./assets/icons/projects/companion.svg" width="16" alt="companion icon" /> [companion](https://github.com/suiflex/companion) — AI meeting assistant capturing Meet and Teams captions into structured Markdown notes.
 - <img src="./assets/icons/projects/kurir.svg" width="16" alt="kurir icon" /> [kurir](https://github.com/suiflex/kurir) — Portable MCP server registration and harness integration toolkit.
 
-
 ### Personal
 
 - <img src="./assets/icons/projects/jira-commands.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
@@ -25,7 +24,7 @@ I'm a Technical Product Manager
 - 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
 - 🚢 [addx](https://github.com/mulhamna/addx) - Transporter MCP / Skill / Plugin / Extension for CLI Agent.
 - 📊 [vod](https://github.com/keton-id/vod) — A dashboard for monitoring multiple Google Meet rooms from a single view.
-+
+
 ### [Keton-id](https://github.com/keton-id)
 
 - 🤫 [cora](https://github.com/keton-id/cora) — Zero-knowledge secret injection for AI agents, written in Zig.
