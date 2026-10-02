@@ -12,7 +12,7 @@
 <text x="262" y="78" fill="#8b949e" font-size="10.5" letter-spacing="1.5" font-family="Segoe UI, Ubuntu, Sans-serif">LONGEST STREAK</text>
 <text x="262" y="106" fill="#c9d1d9" font-size="25" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">173</text>
 <text x="262" y="142" fill="#8b949e" font-size="10.5" letter-spacing="1.5" font-family="Segoe UI, Ubuntu, Sans-serif">TOTAL CONTRIBUTIONS</text>
-<text x="262" y="170" fill="#c9d1d9" font-size="25" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">7,409</text>
+<text x="262" y="170" fill="#c9d1d9" font-size="25" font-weight="700" font-family="Segoe UI, Ubuntu, Sans-serif">7,472</text>
 <rect x="28.0" y="200.4" width="6" height="4.6" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Aug 12: 31 contributions</title></rect>
 <rect x="35.0" y="192.5" width="6" height="12.5" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Aug 13: 85 contributions</title></rect>
 <rect x="42.0" y="188.7" width="6" height="16.3" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Aug 14: 111 contributions</title></rect>
@@ -64,5 +64,5 @@
 <rect x="364.0" y="203.0" width="6" height="2.0" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Sep 29: 6 contributions</title></rect>
 <rect x="371.0" y="198.8" width="6" height="6.2" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Sep 30: 42 contributions</title></rect>
 <rect x="378.0" y="202.2" width="6" height="2.8" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Oct 1: 19 contributions</title></rect>
-<rect x="385.0" y="195.9" width="6" height="9.1" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Oct 2: 62 contributions</title></rect>
+<rect x="385.0" y="186.6" width="6" height="18.4" rx="1.5" fill="#40c463" fill-opacity="0.85"><title>Oct 2: 125 contributions</title></rect>
 </svg>
