@@ -19,6 +19,8 @@ I'm a Technical Product Manager
 ### Personal
 
 - <img src="./assets/icons/projects/jira-commands.svg" width="16" alt="jira-commands icon" /> [jira-commands](https://github.com/mulhamna/jira-commands) — A Jira toolkit for terminals, coding assistants, and bots. Try it at **[jirac.keton.id](https://jirac.keton.id)**.
+- <img src="./assets/icons/projects/clickup-commands.svg" width="16" alt="clickup-commands icon" /> [clickup-commands](https://github.com/mulhamna/clickup-commands) — Clickup toolkit for terminals, coding assistants, and bots.
+- <img src="./assets/icons/projects/trello-commands.svg" width="16" alt="trello-commands icon" /> [trello-commands](https://github.com/mulhamna/trello-commands) — Trello toolkit for terminals, coding assistants, and bots.
 - 📦 [pkgmap](https://github.com/mulhamna/pkgmap) — A monitoring tool for understanding package states and dependency relationships.
 - ⚡️ [portbar](https://github.com/mulhamna/portbar) — A lightweight Mac utility for monitoring ports and local service exposure.
 - 📣 [broask](https://github.com/mulhamna/broask) — A notifier that alerts you when AI coding tools need confirmation in the terminal.
